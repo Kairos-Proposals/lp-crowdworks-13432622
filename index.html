@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RakuFit公式ECサイト構築のご提案 | Kairos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F3EC;
+    --bg-soft: #ECE4D6;
+    --forest: #253A30;
+    --forest-deep: #16251E;
+    --sage: #8FA98C;
+    --gold: #C6A164;
+    --text: #24291F;
+    --line: rgba(37,58,48,0.14);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .serif{
+    font-family: 'Shippori Mincho', serif;
+    color: var(--forest-deep);
+  }
+
+  .container{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- decorative ring ---------- */
+  .ring-deco{
+    position: relative;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, var(--bg) 58%, transparent 59%),
+      conic-gradient(from 200deg, var(--sage), var(--gold), var(--forest), var(--sage));
+  }
+
+  /* ---------- header / hero ---------- */
+  header{
+    position: relative;
+    padding: 90px 0 120px;
+    background:
+      radial-gradient(circle at 82% 12%, rgba(198,161,100,0.18), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(143,169,140,0.22), transparent 50%),
+      var(--bg);
+    overflow: hidden;
+  }
+
+  .kairos-tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    letter-spacing: 0.32em;
+    color: var(--forest);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.5);
+    padding: 8px 18px;
+    border-radius: 999px;
+    margin-bottom: 42px;
+  }
+  .kairos-tag::before{
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero-copy .lead-small{
+    font-size: 15px;
+    color: var(--forest);
+    margin-bottom: 18px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-copy h1{
+    font-size: clamp(34px, 4.6vw, 58px);
+    line-height: 1.5;
+    font-weight: 800;
+    margin-bottom: 28px;
+  }
+  .hero-copy h1 span{
+    display:block;
+  }
+  .hero-copy h1 .accent{
+    color: var(--sage);
+    font-weight: 600;
+  }
+
+  .hero-copy p.desc{
+    max-width: 480px;
+    font-size: 15.5px;
+    color: #45503f;
+  }
+
+  .hero-visual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .ring-main{
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+  }
+  .ring-main .core{
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .ring-main .core small{
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--forest);
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .ring-main .core .brand{
+    font-family: 'Shippori Mincho', serif;
+    font-size: 26px;
+    color: var(--forest-deep);
+    letter-spacing: 0.08em;
+  }
+  .ring-main{
+    position: relative;
+  }
+
+  .float-dot{
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  /* ---------- section common ---------- */
+  section{
+    padding: 100px 0;
+    position: relative;
+  }
+  .section-tag{
+    font-size: 12.5px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .section-title{
+    font-size: clamp(26px, 3.2vw, 38px);
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .section-title small{
+    display:block;
+    font-size: 14px;
+    color: var(--forest);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  /* ---------- understanding ---------- */
+  .understand{
+    background: var(--forest);
+    color: #EFE9DB;
+  }
+  .understand .section-tag{ color: var(--gold); }
+  .understand h2{ color: #FBF7EC; }
+
+  .understand-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 40px;
+  }
+  .understand-grid p{
+    color: #D9D2C1;
+    font-size: 15px;
+  }
+  .need-list{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .need-item{
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .need-item .num{
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    color: var(--gold);
+    min-width: 32px;
+  }
+  .need-item .txt strong{
+    display:block;
+    font-size: 15.5px;
+    color: #FBF7EC;
+    margin-bottom: 4px;
+  }
+  .need-item .txt span{
+    font-size: 13.5px;
+    color: #C9C2AF;
+  }
+
+  /* ---------- value cards ---------- */
+  .value-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 50px;
+  }
+  .value-card{
+    background: #fff;
+    border-radius: 22px;
+    padding: 34px 28px;
+    border: 1px solid var(--line);
+    position: relative;
+    box-shadow: 0 18px 40px -28px rgba(37,58,48,0.35);
+    transition: transform 0.25s ease;
+  }
+  .value-card:hover{ transform: translateY(-6px); }
+  .value-card .mini-ring{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    margin-bottom: 22px;
+  }
+  .value-card h3{
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .value-card p{
+    font-size: 13.8px;
+    color: #4C5748;
+  }
+  .value-card.full{
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(120deg, #FBF8F0, #F1E9D8);
+  }
+  .value-card.full .mini-ring{ margin-bottom: 0; flex-shrink: 0; width: 60px; height: 60px;}
+
+  /* ---------- process ---------- */
+  .process{
+    background: var(--bg-soft);
+  }
+  .timeline{
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    position: relative;
+  }
+  .timeline::before{
+    content:"";
+    position: absolute;
+    top: 22px;
+    left: 4%;
+    right: 4%;
+    height: 1px;
+    background: var(--line);
+  }
+  .step{
+    text-align: left;
+    position: relative;
+    padding-top: 56px;
+  }
+  .step .dot{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: #F5EFDF;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step h3{
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: var(--forest-deep);
+  }
+  .step p{
+    font-size: 12.8px;
+    color: #565f4d;
+  }
+
+  .budget-note{
+    margin-top: 60px;
+    background: #fff;
+    border: 1px dashed var(--sage);
+    border-radius: 18px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .budget-note .amount{
+    font-family: 'Shippori Mincho', serif;
+    font-size: 30px;
+    color: var(--forest-deep);
+  }
+  .budget-note .amount span{
+    font-size: 13px;
+    color: #6b7360;
+    display: block;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    margin-top: 4px;
+  }
+  .budget-note p{
+    font-size: 13.5px;
+    color: #45503f;
+    max-width: 520px;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{
+    background: var(--forest-deep);
+    color: #F3EEDF;
+    text-align: center;
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before{
+    content:"";
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 60px solid rgba(198,161,100,0.08);
+    top: -180px; right: -160px;
+  }
+  .closing::after{
+    content:"";
+    position: absolute;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 40px solid rgba(143,169,140,0.08);
+    bottom: -140px; left: -100px;
+  }
+  .closing .section-tag{ color: var(--gold); justify-content: center; text-align:center;}
+  .closing h2{
+    color: #FBF7EC;
+    font-size: clamp(26px, 3.6vw, 42px);
+    margin-bottom: 24px;
+  }
+  .closing p{
+    color: #C9C2AF;
+    max-width: 560px;
+    margin: 0 auto 46px;
+    font-size: 14.5px;
+  }
+  .cta-btn{
+    display: inline-block;
+    background: var(--gold);
+    color: #23291B;
+    font-weight: 700;
+    padding: 18px 48px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 20px 40px -18px rgba(198,161,100,0.6);
+    position: relative;
+    z-index: 2;
+  }
+  .closing-foot{
+    margin-top: 40px;
+    font-size: 12px;
+    color: #8C8570;
+    letter-spacing: 0.12em;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-visual{ order: -1; margin-bottom: 10px; }
+    .understand-grid{ grid-template-columns: 1fr; gap: 30px; }
+    .value-grid{ grid-template-columns: 1fr 1fr; }
+    .value-card.full{ grid-column: span 2; flex-direction: column; text-align:center; }
+    .timeline{ grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+    .timeline::before{ display:none; }
+  }
+  @media (max-width: 560px){
+    section{ padding: 70px 0; }
+    header{ padding: 70px 0 90px; }
+    .value-grid{ grid-template-columns: 1fr; }
+    .value-card.full{ grid-column: span 1; }
+    .timeline{ grid-template-columns: repeat(2, 1fr); }
+    .ring-main{ width: 240px; height: 240px; }
+    .ring-main .core{ inset: 30px; }
+    .budget-note{ flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="kairos-tag">KAIROS FROM PROPOSAL — オルタナリヴ様 RakuFit プロジェクト</div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="lead-small">Shopify design & build proposal</div>
+        <h1>
+          <span>整えることを、</span>
+          <span class="accent">習慣にする。</span>
+        </h1>
+        <p class="desc">
+          RakuFit Ring、体組成計、ウェルネス商品――毎日そっと寄り添う道具たちに、
+          迷わず出会える場所を。Kairosは、清潔感とやさしさ、そして購入のしやすさを
+          両立させたShopify ECサイトを、Prestigeテーマの深い理解とともにご提案します。
+        </p>
+      </div>
+      <div class="hero-visual">
+        <div class="ring-deco ring-main">
+          <div class="core">
+            <small>OFFICIAL EC SITE</small>
+            <div class="brand">RakuFit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="understand">
+  <div class="container">
+    <div class="section-tag">01 / UNDERSTANDING</div>
+    <h2 class="section-title">
+      ベンチマークの導線を活かしながら、<br>RakuFitらしい体温をのせる。
+      <small>募集内容を拝見し、Kairosが理解した本質的な要望を整理しました。</small>
+    </h2>
+    <div class="understand-grid">
+      <p>
+        RakuFitは、リングや体組成計といった「日々のデータ」を扱う商品でありながら、
+        目指す世界観は無機質さではなく、清潔感・やさしさ・上質な日常感。
+        既存のベンチマークサイトの購入導線という「型」を尊重しながら、
+        そこにRakuFitならではの余白と質感を重ねていく設計が必要だと考えています。
+        また、ワイヤーフレームが未確定の段階からご一緒できることも、
+        私たちにとって重要な意味を持つと捉えています。
+      </p>
+      <div class="need-list">
+        <div class="need-item">
+          <div class="num">01</div>
+          <div class="txt">
+            <strong>Prestigeテーマの深い設定変更</strong>
+            <span>単なる初期設定ではなく、購入導線に合わせた構造理解が必須</span>
+          </div>
+        </div>
+        <div class="need-item">
+          <div class="num">02</div>
+          <div class="txt">
+            <strong>商品画像を活かしたビジュアル制作</strong>
+            <span>Ring・体組成計・ウェルネス商品、それぞれの魅力を伝えるバナー設計</span>
+          </div>
+        </div>
+        <div class="need-item">
+          <div class="num">03</div>
+          <div class="txt">
+            <strong>スマホでの分かりやすさとCVR</strong>
+            <span>見た目の美しさだけでなく、迷わせない購入体験の設計</span>
+          </div>
+        </div>
+        <div class="need-item">
+          <div class="num">04</div>
+          <div class="txt">
+            <strong>2026年10月末の公開という期限</strong>
+            <span>逆算したスケジュールと、限られた予算内での適切な範囲設計</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <div class="section-tag">02 / WHAT WE OFFER</div>
+    <h2 class="section-title">
+      Kairosがご提供できる価値
+      <small>「見た目の上質さ」と「購入のしやすさ」、どちらも妥協しません。</small>
+    </h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="ring-deco mini-ring"></div>
+        <h3>Shopify × Prestige構築の実務経験</h3>
+        <p>Prestigeテーマの各セクション構造を理解した上で、無理な力技ではなく、テーマの思想に沿った自然なカスタマイズを行います。</p>
+      </div>
+      <div class="value-card">
+        <div class="ring-deco mini-ring"></div>
+        <h3>D2Cブランドの温度を宿すビジュアル</h3>
+        <p>提供いただく商品画像・ロゴを起点に、RakuFitらしい「静けさ」と「信頼感」を両立したキービジュアル・バナーを制作します。</p>
+      </div>
+      <div class="value-card">
+        <div class="ring-deco mini-ring"></div>
+        <h3>スマホ購入導線の最適化</h3>
+        <p>指の動き・視線の流れを意識したモバイルファースト設計で、カート離脱を防ぐ購入体験をつくります。</p>
+      </div>
+      <div class="value-card full">
+        <div class="ring-deco mini-ring"></div>
+        <div>
+          <h3>基本設定からドメイン接続・公開確認までワンストップ</h3>
+          <p>決済・配送・お問い合わせフォームの基本設定、独自ドメイン接続、公開前の動作確認まで、公開に必要な工程を一貫してサポートします。ワイヤーフレーム未確定の状態からのご相談も歓迎です。</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="ring-deco mini-ring"></div>
+        <h3>公開後も伴走する運用相談</h3>
+        <p>公開して終わりにせず、継続的なサイト改善やコンテンツ追加についても、必要なタイミングでご相談いただける関係を大切にします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div class="section-tag">03 / SCHEDULE</div>
+    <h2 class="section-title">
+      進め方のイメージ
+      <small>2026年10月末の公開から逆算した、無理のないスケジュールです。</small>
+    </h2>
+    <div class="timeline">
+      <div class="step">
+        <div class="dot">1</div>
+        <h3>ヒアリング</h3>
+        <p>ベンチマークサイト共有・要件すり合わせ</p>
+      </div>
+      <div class="step">
+        <div class="dot">2</div>
+        <h3>構成設計</h3>
+        <p>ワイヤーフレーム・ページ構成の策定</p>
+      </div>
+      <div class="step">
+        <div class="dot">3</div>
+        <h3>デザイン制作</h3>
+        <p>キービジュアル・バナー・全ページデザイン</p>
+      </div>
+      <div class="step">
+        <div class="dot">4</div>
+        <h3>Shopify構築</h3>
+        <p>Prestigeカスタマイズ・スマホ対応実装</p>
+      </div>
+      <div class="step">
+        <div class="dot">5</div>
+        <h3>基本設定</h3>
+        <p>決済・配送・フォーム・ドメイン接続</p>
+      </div>
+      <div class="step">
+        <div class="dot">6</div>
+        <h3>確認・公開</h3>
+        <p>動作確認を経て本番公開</p>
+      </div>
+    </div>
+
+    <div class="budget-note">
+      <div class="amount">¥300,000〜400,000<span>ご提示予算に応じた制作範囲でお見積りいたします</span></div>
+      <p>
+        有料テーマ・Shopifyアプリ等の外部費用は契約金額に含めず算出いたします。
+        制作範囲（ページ数・バナー点数・カスタマイズ深度）に応じて、
+        30万円前後を基準とした具体的なお見積りをご提示します。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="container">
+    <div class="section-tag">04 / NEXT STEP</div>
+    <h2>RakuFitの「ちょうどいい」を、<br>一緒に形にしませんか。</h2>
+    <p>
+      自己紹介・Shopify制作実績・対応可能な制作範囲・お見積りをまとめたご提案書を、
+      オルタナリヴ様の応募要項に沿ってお送りいたします。ご質問だけでも構いません、
+      お気軽にお声がけください。
+    </p>
+    <a href="#" class="cta-btn">Kairosに相談する</a>
+    <div class="closing-foot">KAIROS — Web制作・システム開発チーム</div>
+  </div>
+</section>
+
+</body>
+</html>
